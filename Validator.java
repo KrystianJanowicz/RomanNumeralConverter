@@ -1,8 +1,9 @@
 public class Validator {
 
     static char[] romanSigns = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+    static String rom = "MMMIDI";
     static int[] romanSignValues = {1, 5, 10, 50, 100, 500, 1000};
-    static String rom = "IVM";
+
     static String rom2 = "MMCAXVIXIRI";
 
     public static void main(String[] args) {
@@ -29,8 +30,22 @@ public class Validator {
     public static boolean containsSubtraction(String sequence) {
         char[] charSequence = sequence.toCharArray();
         for (int i = 0; i < charSequence.length; i++) {
-            if ((charSequence[i] == romanSigns[i]) && (charSequence[i + 1] == romanSigns[i + 1])) {
-                return true;
+            for (int j = 0; i <= romanSigns.length; j++) {
+                try {
+                    if ((charSequence[i] == romanSigns[j]) &&
+                            ((charSequence[i + 1] == romanSigns[j + 1]) ||
+                                    (charSequence[i + 1] == romanSigns[j + 2]) ||
+                                    (charSequence[i + 1] == romanSigns[j + 3]) ||
+                                    (charSequence[i + 1] == romanSigns[j + 4]) ||
+                                    (charSequence[i + 1] == romanSigns[j + 5]) ||
+                                    (charSequence[i + 1] == romanSigns[j + 6]))) {
+                        System.out.println("znak " + charSequence[i] + " jest przed znakiem " + charSequence[i+1]);\
+
+                        return true;
+                    }
+                } catch (ArrayIndexOutOfBoundsException n) {
+                    break;
+                }
             }
         }
         return false;
